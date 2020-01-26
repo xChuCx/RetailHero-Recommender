@@ -1,0 +1,4 @@
+{
+    "image": "xchucx/x5rec",
+    "entry_point": "gunicorn -c gconfig.py manage:app"
+}
