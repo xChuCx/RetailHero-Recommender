@@ -1,6 +1,7 @@
-numpy
-pandas
+numpy==1.18.1
+pandas==0.25.3
 scipy
 Flask
 Flask-RESTful
 gunicorn
+implicit

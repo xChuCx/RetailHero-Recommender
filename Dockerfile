@@ -1,14 +1,18 @@
 # base image
-FROM python:3.7-alpine
+FROM python:3.8.1-slim
 
 # set working directory
 WORKDIR /usr/src/app
 
-RUN apk --update add build-base
-
 # add and install requirements
 COPY ./requirements.txt /usr/src/app/requirements.txt
+
+RUN apt-get update \
+    && apt-get -y install gcc g++
+
 RUN pip install -r requirements.txt
+
+
 
 # add app
 ADD . /usr/src/app
