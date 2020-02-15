@@ -11,7 +11,8 @@ api = Api(RecSystem_blueprint)
 
 ctl = Predictor(
     product_csv_path="./assets/products.csv",
-    model_pickled_path="./assets/model.pkl"
+    model_pickled_path="./assets/model.pkl",
+    dict_pickle_path="./assets/x5_dic.pkl"
 )
 
 # baseline
@@ -67,7 +68,7 @@ class Recommend(Resource):
             if not products:
                 return jsonify(baseline)
             else:
-                recs = ctl.predict(r.get("transaction_history", []))
+                recs = ctl.predict(products)
                 recs = recs + [
                     base_task
                     for base_task in baseline["recommended_products"]
