@@ -62,7 +62,7 @@ class Recommend(Resource):
     def post(self):
         try:
             r = request.json
-            user_id, user_frame = parse_data(data)
+            user_id, user_frame = parse_data(r)
             products = user_frame["product_id"].to_list()
             if not products:
                 return jsonify(baseline)
