@@ -13,7 +13,7 @@ class Predictor:
     def __init__(self, product_csv_path, model_pickled_path, dict_pickled_path):
         self.product_encoder = ProductEncoder(product_csv_path)
         self.model = pickle.load(open(model_pickled_path, "rb"))
-        with open(dict_pickled_path.pkl, "rb") as f:
+        with open(dict_pickled_path, "rb") as f:
             (
                 self.client_dict,
                 self.reverse_client_dict,
