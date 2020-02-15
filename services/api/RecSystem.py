@@ -62,23 +62,19 @@ class Status(Resource):
 class Recommend(Resource):
     def post(self):
         try:
-            r = request.json
-            user_id, user_frame = parse_data(r)
+            data = request.json
+            user_id, user_frame = parse_data(data)
             products = user_frame["product_id"].to_list()
             if not products:
                 return jsonify(baseline)
             else:
-                recs = ctl.predict(products)
-                recs = recs + [
+                predictions = [pred for pred in ctl.predict(products)]
+                predictions = predictions + [
                     base_task
                     for base_task in baseline["recommended_products"]
-                    if base_task not in recs
+                    if base_task not in predictions
                 ]
-                response_object = jsonify({
-                    'recommended_products': recs[:30]
-                })
-                response_object.status_code = 200
-                return response_object
+                return jsonify({"recommended_products": predictions[:30]})
         except Exception as e:
             return jsonify(baseline)
 
