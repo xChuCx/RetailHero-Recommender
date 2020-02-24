@@ -1,3 +1,3 @@
 # RetailHero-Recommender
-Cоревнование - Retail Hero. Recommender system
+Cоревнование - Retail Hero. 
 https://retailhero.ai/c/recommender_system/overview
