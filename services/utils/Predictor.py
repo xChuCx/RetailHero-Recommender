@@ -1,17 +1,11 @@
 import pickle
-from collections import defaultdict
 
 import numpy as np
 import scipy
-import pandas as pd
-from scipy import sparse as sp
-
-from services.utils import ProductEncoder, make_coo_row
 
 
 class Predictor:
-    def __init__(self, product_csv_path, model_pickled_path, dict_pickled_path):
-        self.product_encoder = ProductEncoder(product_csv_path)
+    def __init__(self, model_pickled_path, dict_pickled_path):
         self.model = pickle.load(open(model_pickled_path, "rb"))
         with open(dict_pickled_path, "rb") as f:
             (
@@ -36,7 +30,7 @@ class Predictor:
         )
 
         raw_recs = self.model.recommend(
-            userid=0, user_items=sparse_matrix, N=30, filter_already_liked_items=False, recalculate_user=True
+            0, sparse_matrix, N=30, filter_already_liked_items=False, recalculate_user=True
         )
         return [self.reverse_product_dict[r[0]] for r in raw_recs]
 

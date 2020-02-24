@@ -10,7 +10,6 @@ RecSystem_blueprint = Blueprint('RecSystem', __name__)
 api = Api(RecSystem_blueprint)
 
 ctl = Predictor(
-    product_csv_path="./assets/products.csv",
     model_pickled_path="./assets/model.pkl",
     dict_pickled_path="./assets/x5_dic.pkl"
 )
